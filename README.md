@@ -72,9 +72,9 @@ welchen Staffeln gefunden wurden.
 ### Warum es die Staffel-ID braucht
 
 handball.net führt unter **einer** `team_id` mitunter **zwei tatsächliche Mannschaften**
-eines Vereins. Beispiel HVE Villigst-Ergste: `team_id 86629` hat 26 Spiele in der
-HVW Männer Oberliga Staffel 2 **und** 22 in der KÜS Bezirksliga Mitte – am selben
-Wochenende, teils zur selben Zeit. Das sind zwei Teams unter einem Datensatz. Erst
+eines Vereins. Beispiel HVE Villigst-Ergste, Stand August 2026: `team_id 86629` hatte
+26 Spiele in der HVW Männer Oberliga Staffel 2 **und** 22 in der KÜS Bezirksliga Mitte –
+am selben Wochenende, teils zur selben Zeit. Zwei Teams unter einem Datensatz. Erst
 `--phase` trennt sie:
 
 ```json
@@ -89,6 +89,28 @@ Wochenende, teils zur selben Zeit. Das sind zwei Teams unter einem Datensatz. Er
 Gehören mehrere Staffeln **zusammen** (Liga plus Freundschaftsspiele derselben
 Mannschaft), kommen sie in einen Eintrag: `--phase 12647 --phase 15539`.
 Ohne Staffel-Angabe landet alles im Kalender, was die API unter der `team_id` führt.
+
+### Wenn eine Mannschaft plötzlich keine Spiele mehr liefert
+
+**IDs bei handball.net sind nicht für die Ewigkeit.** Im September 2026 hat der Verband
+die Doppelbelegung oben aufgelöst: Die Zweite bekam eine **eigene `team_id` (97297)**,
+während die Staffel-ID unverändert blieb. Unser Filter suchte damit unter der alten
+`team_id` nach einer Staffel, die dort nicht mehr vorkam – Ergebnis: null Spiele.
+
+Zwei Dinge fangen das inzwischen ab:
+
+- Der Lauf **meldet jede konfigurierte Mannschaft ohne Spiele** in `probleme.txt`, und
+  der Actions-Job wird dadurch **rot** – nach dem Deploy, damit die übrigen Feeds
+  trotzdem aktuell veröffentlicht werden.
+- Aussortierte Spiele werden im Log **mit Staffelnamen und ID** genannt, nicht nur
+  gezählt. Wandert eine Mannschaft in eine andere Staffel, steht die neue ID direkt da.
+
+Zum Nachsehen: `python -m tools.discover --club <club_id>` listet alle Mannschaften des
+Vereins mit aktueller `team_id` und Staffel.
+
+Nebenbei hat handball.net dabei auch die **Vereins-IDs von Zahlen auf Zeichenketten**
+umgestellt (`4868` → `"1t9yc3c"`). Der Filter `?club_id=` nimmt weiterhin die Zahl, in
+den Daten steht aber die neue Kennung; `tools/discover.py` prüft deshalb beide.
 
 ## Ein Feed je Mannschaft – plus Sammel-Feeds
 

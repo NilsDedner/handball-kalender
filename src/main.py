@@ -18,6 +18,7 @@ from src.models import Match, TeamRef
 from src.parser import dedupe, to_match
 
 DOCS = Path("docs")
+PROBLEME = Path("probleme.txt")   # vom Workflow ausgewertet
 
 
 def collect_team_matches(
@@ -31,7 +32,19 @@ def collect_team_matches(
     )
     passend = [s for s in rohe if team.passt(s)]
     if len(passend) != len(rohe):
-        print(f"    {len(rohe) - len(passend)} Spiele durch Staffel-Filter aussortiert")
+        # Die Staffeln benennen, nicht nur zählen: wandert eine Mannschaft in eine
+        # neue Staffel, steht hier direkt die ID, die in teams.json gehört.
+        fremd = sorted(
+            {
+                (s["phase"]["id"], (s["phase"].get("name") or "").strip())
+                for s in rohe
+                if not team.passt(s) and s.get("phase")
+            }
+        )
+        benannt = ", ".join(f"{name} ({pid})" for pid, name in fremd)
+        print(
+            f"    {len(rohe) - len(passend)} Spiele durch Staffel-Filter aussortiert: {benannt}"
+        )
 
     matches = [m for m in (to_match(s, team) for s in passend) if m is not None]
     verworfen = len(passend) - len(matches)
@@ -90,6 +103,7 @@ def main() -> int:
 
     DOCS.mkdir(exist_ok=True)
     feeds: list[tuple[str, str, int]] = []
+    probleme: list[str] = []
     # Ein Zeitstempel für alle Feeds eines Laufs.
     gebaut_am = datetime.now(dt_timezone.utc)
 
@@ -97,6 +111,16 @@ def main() -> int:
     for team in cfg.teams:
         matches = je_team.get(team.feed_slug, [])
         if not matches:
+            # Eine konfigurierte Mannschaft ohne Spiele ist fast immer ein Fehler in
+            # teams.json, kein leerer Spielplan: handball.net vergibt neue team_ids,
+            # wenn ein Verein seine Mannschaften neu registriert. Die alte .ics bleibt
+            # liegen und wäre sonst wochenlang unbemerkt veraltet.
+            probleme.append(
+                f"{team.display} (team_id {team.team_id}"
+                + (f", {team.filter_beschreibung}" if team.filter_beschreibung else "")
+                + ") liefert keine Spiele – team_id/Staffel prüfen: "
+                f"python -m tools.discover --club <club_id>"
+            )
             continue
         feeds.append(
             schreibe_feed(
@@ -145,6 +169,15 @@ def main() -> int:
     for slug, name, anzahl in feeds:
         print(f"   docs/{slug}.ics   {anzahl:>3} Spiele   {name}")
     print(f"✓ {DOCS / 'index.html'}")
+
+    # Die guten Feeds sind geschrieben und werden veröffentlicht – der Lauf meldet das
+    # Problem trotzdem, damit es auffällt. Die Datei wertet der Workflow nach dem
+    # Deploy aus und färbt den Lauf rot.
+    if probleme:
+        print("\n[PROBLEM] " + "\n[PROBLEM] ".join(probleme), file=sys.stderr)
+        PROBLEME.write_text("\n".join(probleme) + "\n", encoding="utf-8")
+    elif PROBLEME.exists():
+        PROBLEME.unlink()
     return 0
 
 

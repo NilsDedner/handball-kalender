@@ -49,3 +49,16 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # Erst nach dem Deploy: die funktionierenden Feeds sind veröffentlicht, der Lauf
+      # wird aber rot, wenn eine konfigurierte Mannschaft keine Spiele geliefert hat.
+      # Sonst fällt so etwas erst auf, wenn jemand einen leeren Kalender bemerkt.
+      - name: Auf Probleme prüfen
+        if: always()
+        run: |
+          if [ -s probleme.txt ]; then
+            echo "::error::Eine konfigurierte Mannschaft liefert keine Spiele"
+            cat probleme.txt
+            exit 1
+          fi
+          echo "Alle konfigurierten Mannschaften haben Spiele geliefert."

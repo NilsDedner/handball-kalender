@@ -15,7 +15,7 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-from src.client import HandballNetClient
+from src.client import ApiError, HandballNetClient
 from src.config import env
 
 CACHE = Path(".cache/clubs.json")
@@ -47,11 +47,30 @@ def suche_vereine(client: HandballNetClient, begriff: str, *, refresh: bool) -> 
     print("\nMannschaften eines Vereins:  python -m tools.discover --club <club_id>")
 
 
+def _club_kennungen(client: HandballNetClient, club_id: int) -> set[str]:
+    """Alle Schreibweisen der Vereins-ID sammeln.
+
+    handball.net hat die Vereins-IDs von Zahlen auf Zeichenketten umgestellt
+    (4868 -> "1t9yc3c"). Der Filter `?club_id=` nimmt weiter die Zahl, in den
+    Daten steht aber die neue Kennung – ohne beides findet man keine Mannschaft.
+    """
+    kennungen = {str(club_id)}
+    try:
+        verein = client.get(f"teams/clubs/{club_id}")
+        daten = verein.get("data") or verein
+        if daten.get("id") is not None:
+            kennungen.add(str(daten["id"]))
+    except ApiError:
+        pass
+    return kennungen
+
+
 def zeige_mannschaften(client: HandballNetClient, club_id: int, *, von: str, bis: str) -> None:
     spiele = client.matches(club_id=club_id, date_from=von, date_to=bis)
     if not spiele:
         print(f"Verein {club_id} hat im Fenster {von} … {bis} keine Spiele.")
         return
+    kennungen = _club_kennungen(client, club_id)
 
     # (team_id, name) -> {(phase_id, staffelname): anzahl}
     teams: dict[tuple[int, str], dict[tuple[int, str], int]] = defaultdict(
@@ -61,7 +80,7 @@ def zeige_mannschaften(client: HandballNetClient, club_id: int, *, von: str, bis
         phase = s.get("phase") or {}
         for seite in ("local", "visitor"):
             t = s.get(seite) or {}
-            if (t.get("club") or {}).get("id") == club_id and t.get("id"):
+            if str((t.get("club") or {}).get("id")) in kennungen and t.get("id"):
                 key = (int(phase.get("id", 0)), (phase.get("name") or "").strip())
                 teams[(int(t["id"]), (t.get("name") or "").strip())][key] += 1
 
