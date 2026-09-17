@@ -1,28 +1,34 @@
-name: Build & publish handball.net ICS
+name: Spielplan-Feeds bauen & veröffentlichen
 
 on:
   schedule:
     - cron: "0 */6 * * *"   # alle 6 Stunden (Kalender-Apps aktualisieren ohnehin träge)
   workflow_dispatch: {}       # manuell auslösbar
   push:
-    branches: [main]          # teams.json geändert -> Feed sofort neu
+    branches: [main]
+    # Nur bei Änderungen an Konfiguration oder Code neu bauen, nicht bei einem
+    # Commit in docs/. (Commits des Jobs selbst lösen ohnehin keinen Lauf aus.)
+    paths:
+      - teams.json
+      - requirements.txt
+      - src/**
+      - tools/**
+      - .github/workflows/build-ics.yml
 
-# Nur ein Lauf gleichzeitig; laufende Deploys nicht abbrechen.
+# Nur ein Lauf gleichzeitig; laufende Läufe nicht abbrechen, sonst kollidieren
+# zwei Jobs beim Commit auf denselben Branch.
 concurrency:
-  group: pages
+  group: build-ics
   cancel-in-progress: false
 
+# Schreibrechte, weil der Job die Feeds nach docs/ committet. GitHub Pages liefert
+# diesen Ordner aus (Settings -> Pages -> Source: Deploy from a branch, main /docs).
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -33,8 +39,8 @@ jobs:
 
       - run: pip install -r requirements.txt
 
-      # handball.net braucht keinen Login -> keine Secrets, alles über Variables.
-      - name: Feed erzeugen
+      # Die Quellen brauchen keinen Login -> keine Secrets, alles über Variables.
+      - name: Feeds erzeugen
         env:
           SEASON_START: ${{ vars.SEASON_START || '2026-08-01' }}
           SEASON_END: ${{ vars.SEASON_END || '2027-06-30' }}
@@ -43,14 +49,58 @@ jobs:
           MATCH_DURATION_MIN: ${{ vars.MATCH_DURATION_MIN || '120' }}
         run: python -m src.main
 
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
+      # Jeder Lauf schreibt einen neuen Zeitstempel (DTSTAMP, LAST-MODIFIED, "Stand"
+      # in der Übersicht). Ohne diesen Filter entstünde alle sechs Stunden ein Commit,
+      # der nichts aussagt. Dateien, die sich nur im Zeitstempel unterscheiden, werden
+      # deshalb zurückgesetzt – übrig bleibt, was wirklich neu ist: Verlegungen,
+      # Hallenwechsel, Ergebnisse. Die Historie zeigt dann genau diese Änderungen.
+      - name: Nur inhaltliche Änderungen behalten
+        id: pruefen
+        run: |
+          set -euo pipefail
+          geaendert=false
 
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          # Ein neuer Feed (noch nicht im Repo) ist immer eine Änderung.
+          if [ -n "$(git ls-files --others --exclude-standard -- docs)" ]; then
+            echo "neu: $(git ls-files --others --exclude-standard -- docs | tr '\n' ' ')"
+            geaendert=true
+          fi
 
-      # Erst nach dem Deploy: die funktionierenden Feeds sind veröffentlicht, der Lauf
+          # Je .ics prüfen, ob außer den Zeitstempeln etwas anders ist.
+          for f in $(git diff --name-only -- 'docs/*.ics'); do
+            rest=$(git diff -U0 -- "$f" \
+              | grep -E '^[+-]' \
+              | grep -vE '^(\+\+\+|---)' \
+              | grep -vE '^[+-](DTSTAMP|LAST-MODIFIED)' || true)
+            if [ -n "$rest" ]; then
+              echo "geändert: $f"
+              echo "$rest"
+              geaendert=true
+            else
+              echo "unverändert (nur Zeitstempel): $f"
+            fi
+          done
+
+          if [ "$geaendert" = true ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            # Alles zurücksetzen, auch index.html – die Übersicht gehört zum Stand
+            # der Feeds und soll nicht allein wegen ihrer Fußzeile committet werden.
+            git checkout -- docs
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Keine inhaltliche Änderung – kein Commit."
+          fi
+
+      - name: Committen und pushen
+        if: steps.pruefen.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git commit -m "Spielplan aktualisiert ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+          git push
+
+      # Erst nach dem Commit: die funktionierenden Feeds sind veröffentlicht, der Lauf
       # wird aber rot, wenn eine konfigurierte Mannschaft keine Spiele geliefert hat.
       # Sonst fällt so etwas erst auf, wenn jemand einen leeren Kalender bemerkt.
       - name: Auf Probleme prüfen

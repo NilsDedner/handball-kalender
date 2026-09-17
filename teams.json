@@ -1,42 +1,17 @@
 {
   "teams": [
     {
-      "label": "HVE 1. Herren",
-      "team_id": 86629,
-      "slug": "hve-1-herren",
-      "phase_ids": [
-        12647
-      ]
-    },
-    {
-      "label": "HVE 2. Herren",
-      "team_id": 97297,
-      "slug": "hve-2-herren",
-      "phase_ids": [
-        14340
-      ]
-    },
-    {
-      "label": "PSV Recklinghausen Damen",
-      "team_id": 87292,
-      "slug": "psv-damen",
-      "phase_ids": [
-        14058
-      ]
+      "label": "VfL Waiblingen Herren 2",
+      "source": "h4a",
+      "org_id": 216,
+      "class_ids": [
+        161166,
+        167351
+      ],
+      "team_name": "VfL Waiblingen 2",
+      "slug": "vfl-waiblingen-herren2",
+      "team_id": 1465016
     }
   ],
-  "feeds": [
-    {
-      "label": "Alle Mannschaften",
-      "slug": "alle"
-    },
-    {
-      "label": "Ohne HVE 1. Herren",
-      "slug": "ohne-hve-1-herren",
-      "teams": [
-        "hve-2-herren",
-        "psv-damen"
-      ]
-    }
-  ]
+  "feeds": []
 }

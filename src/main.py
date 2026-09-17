@@ -13,6 +13,7 @@ from pathlib import Path
 from src.client import ApiError, HandballNetClient
 from src.config import Config
 from src.dashboard import render_dashboard
+from src.h4a import H4aError, Handball4AllClient, collect_team_matches as collect_h4a_matches
 from src.ics import build_calendar, to_ics_bytes
 from src.models import Match, TeamRef
 from src.parser import dedupe, to_match
@@ -85,16 +86,32 @@ def schreibe_feed(
 
 def main() -> int:
     cfg = Config.from_env()
-    client = HandballNetClient()
+    # Beide Clients werden erst beim ersten Zugriff gebaut: wer nur eine Quelle
+    # konfiguriert hat, baut auch nur zu dieser eine Verbindung auf.
+    clients: dict[str, object] = {}
+
+    def client_fuer(team: TeamRef):
+        art = "h4a" if team.ist_h4a else "handballnet"
+        if art not in clients:
+            clients[art] = Handball4AllClient() if team.ist_h4a else HandballNetClient()
+        return clients[art]
 
     print(f"→ Fenster {cfg.season_start} … {cfg.season_end} | {len(cfg.teams)} Mannschaft(en)")
     je_team: dict[str, list[Match]] = {}
     for team in cfg.teams:
         zusatz = f" [{team.filter_beschreibung}]" if team.filter_beschreibung else ""
-        print(f"→ {team.display} (team_id {team.team_id}){zusatz}")
+        kennung = f"„{team.team_name}“" if team.ist_h4a else f"team_id {team.team_id}"
+        print(f"→ {team.display} ({kennung}){zusatz}")
         try:
-            je_team[team.feed_slug] = collect_team_matches(client, team, cfg)
-        except ApiError as exc:
+            if team.ist_h4a:
+                je_team[team.feed_slug] = dedupe(
+                    collect_h4a_matches(
+                        client_fuer(team), team, cfg.season_start, cfg.season_end
+                    )
+                )
+            else:
+                je_team[team.feed_slug] = collect_team_matches(client_fuer(team), team, cfg)
+        except (ApiError, H4aError) as exc:
             print(f"    [fehler] {exc}", file=sys.stderr)
 
     if not any(je_team.values()):
@@ -115,11 +132,17 @@ def main() -> int:
             # teams.json, kein leerer Spielplan: handball.net vergibt neue team_ids,
             # wenn ein Verein seine Mannschaften neu registriert. Die alte .ics bleibt
             # liegen und wäre sonst wochenlang unbemerkt veraltet.
+            kennung = f"„{team.team_name}“" if team.ist_h4a else f"team_id {team.team_id}"
+            nachsehen = (
+                "python -m tools.h4a <Vereinsname>"
+                if team.ist_h4a
+                else "python -m tools.discover --club <club_id>"
+            )
             probleme.append(
-                f"{team.display} (team_id {team.team_id}"
+                f"{team.display} ({kennung}"
                 + (f", {team.filter_beschreibung}" if team.filter_beschreibung else "")
-                + ") liefert keine Spiele – team_id/Staffel prüfen: "
-                f"python -m tools.discover --club <club_id>"
+                + ") liefert keine Spiele – Staffel/Name prüfen: "
+                + nachsehen
             )
             continue
         feeds.append(

@@ -75,7 +75,9 @@ def load_setup(path: Path | None = None) -> tuple[list[TeamRef], list[FeedSpec]]
     _slugs_eindeutig(teams)
 
     feeds = [FeedSpec.from_dict(f) for f in (daten.get("feeds") or [])]
-    if not feeds:
+    if not feeds and len(teams) > 1:
+        # Bei einer einzigen Mannschaft wäre „alle“ eine Kopie ihres Feeds unter
+        # zweitem Namen – zwei Abo-URLs für denselben Spielplan.
         feeds = [FeedSpec(label="Alle Mannschaften", slug="alle")]
     _feeds_pruefen(feeds, teams, p)
 

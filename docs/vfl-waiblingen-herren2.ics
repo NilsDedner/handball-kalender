@@ -1,0 +1,399 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//handballnet-kalender//Spielplan//DE
+X-WR-CALNAME:Handball: VfL Waiblingen Herren 2
+X-WR-TIMEZONE:Europe/Berlin
+BEGIN:VTIMEZONE
+TZID:Europe/Berlin
+X-LIC-LOCATION:Europe/Berlin
+BEGIN:DAYLIGHT
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=3
+TZNAME:CEST
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYDAY=-1SU;BYMONTH=10
+TZNAME:CET
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+SUMMARY:A · TSF Ditzingen 2 – VfL Waiblingen Herren 2 · 19:31
+DTSTART;TZID=Europe/Berlin:20260914T203000
+DTEND;TZID=Europe/Berlin:20260914T223000
+DTSTAMP:20260917T175928Z
+UID:game-9682551@handball4all.de
+DESCRIPTION:Männer Bezirkspokal (M-Pok-B-SRM)\nAuswärtsspiel · Ergebnis
+  19:31 · 1. Runde\nhttps://www.handball4all.de/home/portal/baden-wuerttem
+ bergischer-hv#/league?ogId=216&lId=167351
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Sporthalle Glemsaue\, Gröningerstraße\, 71254 Ditzingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=167351
+X-HANDBALLNET-STATUS:Beendet
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – TV Stetten
+DTSTART;TZID=Europe/Berlin:20260919T153000
+DTEND;TZID=Europe/Berlin:20260919T173000
+DTSTAMP:20260917T175928Z
+UID:game-9390871@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nSchiedsri
+ chter: Förster\, Garstka\nhttps://www.handball4all.de/home/portal/baden-w
+ uerttembergischer-hv#/league?ogId=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · SV Remshalden – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20260927T170000
+DTEND;TZID=Europe/Berlin:20260927T190000
+DTSTAMP:20260917T175928Z
+UID:game-9390876@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Stegwiesenhalle\, Stegwiesenweg 1\, 73630 Remshalden-Geradstetten
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – SG Weinstadt 2
+DTSTART;TZID=Europe/Berlin:20261003T181500
+DTEND;TZID=Europe/Berlin:20261003T201500
+DTSTAMP:20260917T175928Z
+UID:game-9390901@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · H2Ku Herrenb. 2 – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20261010T174500
+DTEND;TZID=Europe/Berlin:20261010T194500
+DTSTAMP:20260917T175928Z
+UID:game-9390931@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Markweghalle\, Schießtäle\, 71083 Herrenberg
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – HSG Barg/Bettr
+DTSTART;TZID=Europe/Berlin:20261017T200000
+DTEND;TZID=Europe/Berlin:20261017T220000
+DTSTAMP:20260917T175928Z
+UID:game-9390961@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Neue Staufer-Sporthalle\, Mayenner Straße 30\, 71332 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · Hbi Weil/Feuer – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20261025T180000
+DTEND;TZID=Europe/Berlin:20261025T200000
+DTSTAMP:20260917T175928Z
+UID:game-9390996@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Hugo-Kunzi-Sporthalle\, Am Sportpark 4\, 70469 Stuttgart-Feuerbac
+ h
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – HSG Schönbuch
+DTSTART;TZID=Europe/Berlin:20261101T150000
+DTEND;TZID=Europe/Berlin:20261101T170000
+DTSTAMP:20260917T175928Z
+UID:game-9391021@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Neue Staufer-Sporthalle\, Mayenner Straße 30\, 71332 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · TSV Schmiden 2 – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20261107T180000
+DTEND;TZID=Europe/Berlin:20261107T200000
+DTSTAMP:20260917T175928Z
+UID:game-9391046@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Sporthalle beim Schulzentrum\, Remstaler Straße 38\, 70736 Fellb
+ ach-Schmiden
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – HC Winnenden
+DTSTART;TZID=Europe/Berlin:20261128T161500
+DTEND;TZID=Europe/Berlin:20261128T181500
+DTSTAMP:20260917T175928Z
+UID:game-9391116@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Neue Staufer-Sporthalle\, Mayenner Straße 30\, 71332 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · MTV Stuttgart – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20261205T180000
+DTEND;TZID=Europe/Berlin:20261205T200000
+DTSTAMP:20260917T175928Z
+UID:game-9391136@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Sporthalle West (Hasenberg-Schule)\, Bebelstraße 28\, 70193 Stut
+ tgart-West
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – SG Tübingen
+DTSTART;TZID=Europe/Berlin:20261212T200000
+DTEND;TZID=Europe/Berlin:20261212T220000
+DTSTAMP:20260917T175928Z
+UID:game-9391156@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · TV Stetten – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20261219T194500
+DTEND;TZID=Europe/Berlin:20261219T214500
+DTSTAMP:20260917T175928Z
+UID:game-9391201@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Karl-Mauch-Halle\, Dinkelstraße 8\, 71394 Kernen-Stetten
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · HC Winnenden – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20270110T170000
+DTEND;TZID=Europe/Berlin:20270110T190000
+DTSTAMP:20260917T175928Z
+UID:game-9391446@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Alfred-Kärcher-Sporthalle\, Albertviller Straße 60\, 71364 Winn
+ enden
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – SV Remshalden
+DTSTART;TZID=Europe/Berlin:20270123T201500
+DTEND;TZID=Europe/Berlin:20270123T221500
+DTSTAMP:20260917T175928Z
+UID:game-9391206@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · SG Weinstadt 2 – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20270213T180000
+DTEND;TZID=Europe/Berlin:20270213T200000
+DTSTAMP:20260917T175928Z
+UID:game-9391231@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Sporthalle\, Im Obenhinaus 5\, 71384 Weinstadt-Beutelsbach
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – H2Ku Herrenb. 2
+DTSTART;TZID=Europe/Berlin:20270221T170000
+DTEND;TZID=Europe/Berlin:20270221T190000
+DTSTAMP:20260917T175928Z
+UID:game-9391261@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · HSG Barg/Bettr – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20270227T180000
+DTEND;TZID=Europe/Berlin:20270227T200000
+DTSTAMP:20260917T175928Z
+UID:game-9391291@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:FEIN-Halle\, Himmelreichstraße 7\, 73529 Schwäbisch Gmünd-Barg
+ au
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · HSG Schönbuch – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20270314T170000
+DTEND;TZID=Europe/Berlin:20270314T190000
+DTSTAMP:20260917T175928Z
+UID:game-9391351@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Weiler Sportzentrum\, In der Röte 94/2\, 71093 Weil im Schönbuc
+ h
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – TSV Schmiden 2
+DTSTART;TZID=Europe/Berlin:20270320T181500
+DTEND;TZID=Europe/Berlin:20270320T201500
+DTSTAMP:20260917T175928Z
+UID:game-9391376@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – Hbi Weil/Feuer
+DTSTART;TZID=Europe/Berlin:20270410T161500
+DTEND;TZID=Europe/Berlin:20270410T181500
+DTSTAMP:20260917T175928Z
+UID:game-9391326@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:A · SG Tübingen – VfL Waiblingen Herren 2
+DTSTART;TZID=Europe/Berlin:20270417T170000
+DTEND;TZID=Europe/Berlin:20270417T190000
+DTSTAMP:20260917T175928Z
+UID:game-9391486@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nAuswärtsspiel\nhttp
+ s://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?og
+ Id=216&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Sporthalle des Landkreises\, Waldhörnlestraße\, 72072 Tübingen
+ -Derendingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+BEGIN:VEVENT
+SUMMARY:H · VfL Waiblingen Herren 2 – MTV Stuttgart
+DTSTART;TZID=Europe/Berlin:20270424T181500
+DTEND;TZID=Europe/Berlin:20270424T201500
+DTSTAMP:20260917T175928Z
+UID:game-9391466@handball4all.de
+DESCRIPTION:Männer-Landesliga Staffel 2 (M-LL-2-BW)\nHeimspiel\nhttps://w
+ ww.handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=21
+ 6&lId=161166
+LAST-MODIFIED:20260917T175928Z
+LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
+STATUS:CONFIRMED
+URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
+ eague?ogId=216&lId=161166
+X-HANDBALLNET-STATUS:Angesetzt
+END:VEVENT
+END:VCALENDAR

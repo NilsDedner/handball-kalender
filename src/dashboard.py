@@ -77,6 +77,11 @@ def render_dashboard(
 
     gesamt = sum(len(v) for v in je_team.values())
     stand = f" · Stand {gebaut_am.strftime('%d.%m.%Y %H:%M')}" if gebaut_am else ""
+    # Die Quelle je Mannschaft steht in teams.json – im Untertitel nennen wir, was
+    # tatsächlich benutzt wurde, statt pauschal handball.net.
+    quellen = " und ".join(
+        sorted({"handball4all" if t.ist_h4a else "handball.net" for t in cfg.teams})
+    )
     feed_liste = "\n".join(_feed_zeile(*f) for f in feeds)
 
     page = f"""<title>{html.escape(cfg.calendar_name)}</title>
@@ -119,7 +124,7 @@ def render_dashboard(
   }}
 </style>
 <h1>{html.escape(cfg.calendar_name)}</h1>
-<div class="sub">Spielpläne von handball.net · {gesamt} Spiele{html.escape(stand)}</div>
+<div class="sub">Spielpläne von {html.escape(quellen)} · {gesamt} Spiele{html.escape(stand)}</div>
 <div class="abo">
   <p>📅 Abo-URL ist diese Seite plus der Dateiname – einzeln abonnierbar:</p>
   <ul>

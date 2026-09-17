@@ -1,4 +1,14 @@
-# handballnet-kalender · Mannschafts-Spielpläne als Kalender-Abo
+# handball-kalender · Mannschafts-Spielpläne als Kalender-Abo
+
+> **Fork von [matti98xx/handballnet-kalender](https://github.com/matti98xx/handballnet-kalender).**
+> Ergänzt um **handball4all als zweite Datenquelle** – für die Verbände, deren Ligen
+> handball.net derzeit nicht führt (siehe [Zweite Quelle: handball4all](#zweite-quelle-handball4all)),
+> und um einen Workflow, der die Feeds nach `docs/` committet, statt sie nur als
+> Pages-Artefakt auszuliefern. Das Original hat keine Lizenzdatei; alle Rechte am
+> ursprünglichen Code liegen beim Autor.
+>
+> Konfiguriert für: **VfL Waiblingen Herren 2**, Männer-Landesliga Staffel 2 (BWHV),
+> inklusive Bezirkspokal. Feed: `docs/vfl-waiblingen-herren2.ics`.
 
 Baut aus den Spielplänen von **handball.net** Kalender-Abos (ICS) für **frei wählbare
 Mannschaften** – je Mannschaft einen Feed, dazu beliebige Zusammenstellungen. Mit Halle
@@ -40,6 +50,92 @@ mit stabilen UIDs, korrekter Zeitzone und der Halle im Termin.
 `User-agent: *`; gesperrt sind dort nur KI-Trainings-Crawler. Der Client tritt mit
 eigenem User-Agent auf, pausiert zwischen Requests und läuft alle sechs Stunden.
 
+## Zweite Quelle: handball4all
+
+**Nicht jede Liga steht auf handball.net.** Die Seite bezieht ihre Spieldaten seit dem
+Relaunch ausschließlich aus **Handball360**. Verbände, die die Umstellung verschoben
+haben, sind dort nur als leere Hülle angelegt.
+
+Nachgeprüft am 17.09.2026 für den **Baden-Württembergischen Handball-Verband** (BWHV,
+darin der frühere HVW):
+
+- `/api/new/federations` listet 8 Landesverbände – Baden-Württemberg ist nicht dabei.
+- Die Vereinsseite von VfL Waiblingen auf handball.net zeigt **0 Mannschaften**, und
+  `matches?club_id=…` liefert für alle 47 Teams des Vereins **0 Spiele**, auch ohne
+  Datumsfilter.
+- Von Württemberger Vereinen sind dort nur die **DHB-Ligen** zu finden (3. Liga,
+  Jugendbundesliga) – die verwaltet der Bundesverband, nicht der Landesverband.
+- Neun Verbands-IDs (2, 3, 4, 5, 7, 8, 9, 15, 18) existieren, liefern aber weder
+  Wettbewerbe noch Spiele: die angelegten, aber leeren Verbände.
+
+Der Verband verweist deshalb [seit dem 26.08.2026](https://www.bwhv.org/aktuelles/detail/news/spielplaene-auf-handball4allde-online)
+auf das wieder geöffnete **Ergebnisportal von handball4all**. Grund der Verschiebung
+waren Probleme bei Registrierungen, Vereinswechseln und Kaderlisten. Ein neuer Termin
+steht nicht fest.
+
+Dieses Projekt liest deshalb auf Wunsch die JSON-Schnittstelle dieses Portals:
+
+    https://spo.handball4all.de/service/if_g_json.php?cmd=ps&og=<Verband>&cl=<Staffel>&ca=1
+
+**Kein Login, kein Token.** Genutzt werden `cs` (Vereinssuche), `pcu` (Staffeln eines
+Vereins) und `ps` (Spielplan einer Staffel).
+
+### Mannschaft eintragen
+
+```bash
+# 1) Verein suchen (Vorgabe: Verband 216 = BWHV)
+python -m tools.h4a Waiblingen
+#    -> club_id 148  VfL Waiblingen Handball   [71336 Waiblingen]
+
+# 2) Staffeln des Vereins mit Teamnamen anzeigen
+python -m tools.h4a --club 148 --nur-maenner
+#    -> Staffel  161166  M-LL-2-BW  Männer-Landesliga Staffel 2
+#         Mannschaften diese Woche: VfL Waiblingen 2, TV Stetten
+```
+
+Der Eintrag in `teams.json` nennt Verband, Staffel(n) und den Teamnamen:
+
+```json
+{
+  "label": "VfL Waiblingen Herren 2",
+  "source": "h4a",
+  "org_id": 216,
+  "class_ids": [161166, 167351],
+  "team_name": "VfL Waiblingen 2",
+  "slug": "vfl-waiblingen-herren2"
+}
+```
+
+Drei Dinge, die diese Quelle von handball.net unterscheidet:
+
+- **Die Spiele tragen keine Team-ID, nur Namen** – und zwar abgekürzte
+  („H2Ku Herrenb. 2“). Erkannt wird die eigene Mannschaft deshalb über `team_name`,
+  **genau so geschrieben wie in den Spielen**. Im Kalendertitel steht dann wieder das
+  `label`, nicht die Abkürzung.
+- **Mehrere Staffeln in einem Eintrag** ergeben einen Feed. Oben sind das Landesliga
+  *und* Bezirkspokal – Pokalspiele stehen in einer eigenen Staffel.
+- **`og` ist rechtepflichtig.** Der Verband (216) antwortet, die Bezirks-IDs aus
+  demselben Menü liefern HTTP 401. Die Bezirksstaffeln stehen trotzdem unter der
+  Verbands-ID bereit, man muss sie nur dort abfragen.
+
+### Zur nächsten Saison
+
+**Die Staffel-IDs wechseln mit der Saison**, der Teamname bleibt in der Regel. Es
+braucht also zwei Befehle:
+
+```bash
+python -m tools.h4a --club 148 --nur-maenner    # neue Staffel-ID ablesen
+$EDITOR teams.json                              # class_ids ersetzen
+```
+
+Danach genügt ein Push: Der Workflow baut den Feed neu, die Abo-URL bleibt dieselbe.
+Läuft eine Saison aus und die IDs stimmen nicht mehr, liefert der Lauf keine Spiele
+mehr und der Actions-Job wird rot – dazu unten „Wenn eine Mannschaft plötzlich keine
+Spiele mehr liefert“.
+
+Wenn der Verband auf Handball360 umstellt, lässt sich der Eintrag wieder auf
+handball.net umstellen: `source` entfernen und `team_id` plus `phase_ids` setzen.
+
 ## Lokal einrichten
 
 ```bash
@@ -51,7 +147,9 @@ cp .env.example .env          # Saisonfenster, Kalendername, Zeitzone
 ## Mannschaften wählen
 
 Mannschaften stehen in **`teams.json`** und lassen sich jederzeit hinzufügen oder
-entfernen – von Hand oder über `tools.teams`.
+entfernen – von Hand oder über `tools.teams`. Die folgenden Befehle gelten für die
+Quelle **handball.net**; für handball4all siehe
+[Zweite Quelle: handball4all](#zweite-quelle-handball4all).
 
 ```bash
 # 1) Verein suchen (lädt das Vereinsverzeichnis einmalig nach .cache/)
@@ -156,16 +254,34 @@ hat.
 
 ## Automatisch veröffentlichen
 
-1. Repo zu GitHub pushen.
-2. **Settings → Pages → Source: GitHub Actions**.
-3. Workflow „Build & publish handball.net ICS" einmal manuell starten.
-4. Abo-URLs: `https://<user>.github.io/<repo>/<slug>.ics`
+1. Repo zu GitHub pushen (das Repo muss **öffentlich** sein, sonst braucht Pages einen
+   bezahlten Plan).
+2. **Settings → Pages → Source: Deploy from a branch → `main` / `/docs`**.
+3. **Settings → Actions → General → Allow all actions** (in einem Fork sind Actions
+   abgeschaltet, bis man sie einmal einschaltet).
+4. Workflow „Spielplan-Feeds bauen & veröffentlichen" einmal manuell starten.
+5. Abo-URLs: `https://<user>.github.io/<repo>/<slug>.ics`
    Übersicht mit allen Feeds: `https://<user>.github.io/<repo>/`
 
 Secrets braucht der Job keine – die Daten sind öffentlich. Optionale **Variables**:
 `SEASON_START`, `SEASON_END`, `TIMEZONE`, `CALENDAR_NAME`, `MATCH_DURATION_MIN`.
 Ein Push auf `main` (z.B. geändertes `teams.json`) baut die Feeds sofort neu, ansonsten
 läuft der Job alle sechs Stunden.
+
+### Der Job committet nur, was sich inhaltlich geändert hat
+
+`DTSTAMP` und `LAST-MODIFIED` tragen den Zeitpunkt des Laufs – die Dateien in `docs/`
+unterscheiden sich deshalb bei **jedem** Lauf, auch wenn kein Spiel angefasst wurde.
+Der Workflow vergleicht darum jede `.ics` **ohne diese beiden Zeilen** und setzt
+Dateien zurück, bei denen sonst nichts anders ist. `docs/index.html` gehört zum Stand
+der Feeds und wird mit zurückgesetzt.
+
+Übrig bleiben Commits, die etwas aussagen: Verlegungen, Hallenwechsel, Ergebnisse. Ein
+`git log -p -- docs/vfl-waiblingen-herren2.ics` zeigt, was wann geändert wurde.
+
+Der Commit des Jobs löst **keinen** neuen Lauf aus: Pushes mit dem `GITHUB_TOKEN`
+starten keine Workflows. Zusätzlich hört der `push`-Auslöser nur auf Konfiguration und
+Code, nicht auf `docs/`.
 
 ## Kalender abonnieren
 
@@ -281,16 +397,18 @@ erneut versuchen: repariert Google die Funktion, geht es ohne Zutun.
 
 | Datei | Zweck |
 |---|---|
-| `src/client.py` | HTTP-Client: Pagination, Retry, Pause zwischen Requests |
+| `src/client.py` | HTTP-Client für handball.net: Pagination, Retry, Pause zwischen Requests |
+| `src/h4a.py` | zweite Quelle: Portal von handball4all (Client, Staffelplan → `Match`) |
 | `src/parser.py` | Spiel-JSON → `Match` (Zeitzone, ganztägig, Dedupe, Schreibweise) |
 | `src/models.py` | `TeamRef` (Mannschaft), `FeedSpec` (Sammel-Feed) und `Match` |
 | `src/ics.py` | `Match`-Liste → eine VCALENDAR |
 | `src/dashboard.py` | statisches `docs/index.html` mit allen Feeds, nach Mannschaft gruppiert |
 | `src/config.py` | `.env` + `teams.json` laden und schreiben |
 | `src/main.py` | Orchestrierung |
-| `tools/discover.py` | Vereine suchen, Mannschaften mit Staffel-IDs auflisten |
+| `tools/discover.py` | handball.net: Vereine suchen, Mannschaften mit Staffel-IDs auflisten |
+| `tools/h4a.py` | handball4all: Vereine suchen, Staffeln und Teamnamen auflisten |
 | `tools/teams.py` | `add` / `list` / `remove` für `teams.json` |
-| `.github/workflows/build-ics.yml` | Cron-Job + Pages-Deploy |
+| `.github/workflows/build-ics.yml` | Cron-Job, Commit nach `docs/` nur bei inhaltlicher Änderung |
 
 ## Verwandt
 
