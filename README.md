@@ -120,24 +120,40 @@ Drei Dinge, die diese Quelle von handball.net unterscheidet:
   demselben Menü liefern HTTP 401. Die Bezirksstaffeln stehen trotzdem unter der
   Verbands-ID bereit, man muss sie nur dort abfragen.
 
-### Liveticker und Spielbericht im Termin
+### Liveticker, Tabelle und Spielbericht im Termin
 
 **Einen Ticker-Link im Voraus gibt es nicht.** Das Token (`gToken`) entsteht erst, wenn
 die Halle das Spiel startet: Am 27.09.2026 um 14:54 Uhr trugen genau die 10 laufenden
 von 252 Spielen der Woche ein Token, alle anderen ein leeres Feld. `ticker.php` kennt
 keine Spiel-ID – ohne Token landet man auf einer leeren Seite.
 
-Jeder Termin trägt deshalb den Link auf die **Staffelseite des Portals**. Dort steht
-das Spiel mit Live-Knopf, sobald es läuft, und mit Tabelle, wenn es vorbei ist. Läuft
-das Spiel gerade zufällig während eines Laufs, steht zusätzlich der **direkte Ticker**
-im Termin. Sobald die Halle den Spielbericht freigibt (`sGID`), kommt der als PDF-Link
-dazu:
+Jeder Termin trägt deshalb den Link auf die **Staffelseite des Portals**. Die trägt
+Spielplan **und** Tabelle („Aktueller Tabellenstand“ unter den Spielen) und zeigt zur
+Anwurfzeit den Live-Knopf des Spiels – eine eigene Adresse nur für die Tabelle gibt es
+nicht, deshalb eine Zeile mit passender Beschriftung statt derselben URL dreimal:
+
+| Wann | Zeile im Termin |
+|---|---|
+| vor dem Spiel | `Tabelle & Liveticker (zur Anwurfzeit): …` |
+| während des Spiels | `Liveticker (läuft gerade): …` + `Tabelle & Spielplan: …` |
+| nach dem Spiel | `Tabelle & Ergebnisse: …` + `Spielbericht (PDF): …` |
+
+Der direkte Ticker steht nur im Termin, wenn beim Lauf gerade gespielt wurde. Sobald
+die Halle den Spielbericht freigibt (`sGID`), kommt der als PDF-Link dazu:
 
 ```
 Männer-Landesliga Staffel 2 (M-LL-2-BW)
 Heimspiel · Ergebnis 29:28
 Tabelle & Ergebnisse: https://www.handball4all.de/home/portal/…#/league?ogId=216&lId=161166
 Spielbericht (PDF): https://spo.handball4all.de/misc/sboPublicReports.php?sGID=3500396
+```
+
+Die Tabelle steht damit in **jedem** Termin, auch vor dem ersten Spieltag:
+
+```
+Männer Bezirksliga Staffel 1 (M-BL-1-SRM)
+Heimspiel · Schiedsrichter: Edelmann
+Tabelle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/…#/league?ogId=216&lId=167296
 ```
 
 Wer den direkten Ticker öfter im Termin haben will, stellt den Cron im Workflow enger

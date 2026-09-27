@@ -212,14 +212,17 @@ def _links(spiel: dict, *, liga_link: str, gespielt: bool) -> list[str]:
             "Liveticker (läuft gerade): "
             + TICKER.format(token=token, appid=(spiel.get("gAppid") or "").strip())
         )
+
+    # Die Staffelseite trägt Spielplan **und** Tabelle („Aktueller Tabellenstand“
+    # unter den Spielen) – eine eigene Adresse für die Tabelle gibt es nicht. Vor dem
+    # Anwurf erscheint dort zusätzlich der Live-Knopf des Spiels. Eine Zeile, drei
+    # Zwecke; die Beschriftung sagt, was gerade davon zu holen ist.
+    if token:
+        links.append("Tabelle & Spielplan: " + liga_link)
+    elif gespielt:
+        links.append("Tabelle & Ergebnisse: " + liga_link)
     else:
-        # Ohne Token der verlässliche Weg: die Staffelseite zeigt zur Anwurfzeit den
-        # Live-Knopf des Spiels. Ein Klick mehr, dafür steht er schon Wochen vorher
-        # im Termin und führt nie ins Leere.
-        links.append(
-            ("Tabelle & Ergebnisse: " if gespielt else "Liveticker zur Anwurfzeit: ")
-            + liga_link
-        )
+        links.append("Tabelle & Liveticker (zur Anwurfzeit): " + liga_link)
 
     sgid = str(spiel.get("sGID") or "").strip()
     if sgid and sgid != "0":
