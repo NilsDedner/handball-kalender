@@ -7,8 +7,10 @@
 > Pages-Artefakt auszuliefern. Das Original hat keine Lizenzdatei; alle Rechte am
 > ursprünglichen Code liegen beim Autor.
 >
-> Konfiguriert für: **VfL Waiblingen Herren 2**, Männer-Landesliga Staffel 2 (BWHV),
-> inklusive Bezirkspokal. Feed: `docs/vfl-waiblingen-herren2.ics`.
+> Konfiguriert für **VfL Waiblingen Herren 2** (Männer-Landesliga Staffel 2 inkl.
+> Bezirkspokal) und **Herren 3** (Männer Bezirksliga Staffel 1), dazu ein gemeinsamer
+> Feed: `vfl-waiblingen-herren2.ics`, `vfl-waiblingen-herren3.ics`,
+> `vfl-waiblingen-herren2-3.ics`.
 
 Baut aus den Spielplänen von **handball.net** Kalender-Abos (ICS) für **frei wählbare
 Mannschaften** – je Mannschaft einen Feed, dazu beliebige Zusammenstellungen. Mit Halle
@@ -117,6 +119,31 @@ Drei Dinge, die diese Quelle von handball.net unterscheidet:
 - **`og` ist rechtepflichtig.** Der Verband (216) antwortet, die Bezirks-IDs aus
   demselben Menü liefern HTTP 401. Die Bezirksstaffeln stehen trotzdem unter der
   Verbands-ID bereit, man muss sie nur dort abfragen.
+
+### Liveticker und Spielbericht im Termin
+
+**Einen Ticker-Link im Voraus gibt es nicht.** Das Token (`gToken`) entsteht erst, wenn
+die Halle das Spiel startet: Am 27.09.2026 um 14:54 Uhr trugen genau die 10 laufenden
+von 252 Spielen der Woche ein Token, alle anderen ein leeres Feld. `ticker.php` kennt
+keine Spiel-ID – ohne Token landet man auf einer leeren Seite.
+
+Jeder Termin trägt deshalb den Link auf die **Staffelseite des Portals**. Dort steht
+das Spiel mit Live-Knopf, sobald es läuft, und mit Tabelle, wenn es vorbei ist. Läuft
+das Spiel gerade zufällig während eines Laufs, steht zusätzlich der **direkte Ticker**
+im Termin. Sobald die Halle den Spielbericht freigibt (`sGID`), kommt der als PDF-Link
+dazu:
+
+```
+Männer-Landesliga Staffel 2 (M-LL-2-BW)
+Heimspiel · Ergebnis 29:28
+Tabelle & Ergebnisse: https://www.handball4all.de/home/portal/…#/league?ogId=216&lId=161166
+Spielbericht (PDF): https://spo.handball4all.de/misc/sboPublicReports.php?sGID=3500396
+```
+
+Wer den direkten Ticker öfter im Termin haben will, stellt den Cron im Workflow enger
+(z.B. `*/15 * * * *`). Das Repo ist öffentlich, Actions-Minuten kosten dort nichts.
+Viel bringt es trotzdem nicht: Kalender-Apps holen den Feed frühestens stündlich, der
+Link wäre also oft erst zur Halbzeit da.
 
 ### Zur nächsten Saison
 

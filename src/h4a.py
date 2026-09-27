@@ -58,6 +58,20 @@ RETRIES = 3
 PORTAL_SLUGS = {216: "baden-wuerttembergischer-hv"}
 PORTAL_LIGA = "https://www.handball4all.de/home/portal/{slug}#/league?ogId={og}&lId={cl}"
 
+# Liveticker und Spielbericht.
+#
+# **Einen Ticker-Link im Voraus gibt es nicht.** Das Token (`gToken`) entsteht erst,
+# wenn die Halle das Spiel startet: Am 27.09.2026 trugen genau die 10 laufenden von
+# 252 Spielen der Woche ein Token, alle anderen ein leeres Feld. `ticker.php` kennt
+# auch keine Spiel-ID – ohne Token landet man auf einer leeren Seite.
+#
+# Deshalb zwei Wege: Ist beim Lauf ein Token da (das Spiel läuft gerade), steht der
+# direkte Ticker im Termin. Unabhängig davon verweist jeder Termin auf die
+# Staffelseite des Portals – dort taucht der Live-Knopf auf, sobald das Spiel läuft.
+# Nach dem Spiel kommt der Spielbericht (PDF) dazu, sobald die Halle ihn freigibt.
+TICKER = "https://spo.handball4all.de/service/ticker.html?token={token}&appid={appid}"
+SPIELBERICHT = "https://spo.handball4all.de/misc/sboPublicReports.php?sGID={sgid}"
+
 # Bemerkungen, bei denen das Spiel nicht stattfindet. Die Schnittstelle hat kein
 # Status-Feld – der Spielbetrieb schreibt es in `gComment`.
 _ABGESETZT = ("abgesetzt", "ausgefallen", "annulliert", "abgebrochen", "nicht angetreten")
@@ -188,6 +202,32 @@ def _bemerkung(spiel: dict) -> str:
     return " · ".join(t for t in teile if t)
 
 
+def _links(spiel: dict, *, liga_link: str, gespielt: bool) -> list[str]:
+    """Zusatzlinks des Termins: Liveticker (nur während des Spiels) und Spielbericht."""
+    links: list[str] = []
+
+    token = (spiel.get("gToken") or "").strip()
+    if token:
+        links.append(
+            "Liveticker (läuft gerade): "
+            + TICKER.format(token=token, appid=(spiel.get("gAppid") or "").strip())
+        )
+    else:
+        # Ohne Token der verlässliche Weg: die Staffelseite zeigt zur Anwurfzeit den
+        # Live-Knopf des Spiels. Ein Klick mehr, dafür steht er schon Wochen vorher
+        # im Termin und führt nie ins Leere.
+        links.append(
+            ("Tabelle & Ergebnisse: " if gespielt else "Liveticker zur Anwurfzeit: ")
+            + liga_link
+        )
+
+    sgid = str(spiel.get("sGID") or "").strip()
+    if sgid and sgid != "0":
+        links.append("Spielbericht (PDF): " + SPIELBERICHT.format(sgid=sgid))
+
+    return links
+
+
 def to_match(spiel: dict, team: TeamRef, *, liga: str, link: str) -> Match | None:
     """Ein Spiel des Portals in ein `Match` übersetzen. None ohne lesbares Datum."""
     start = parse_datum(spiel.get("gDate"), spiel.get("gTime"))
@@ -218,6 +258,7 @@ def to_match(spiel: dict, team: TeamRef, *, liga: str, link: str) -> Match | Non
         dedupe_key=(start, heim, gast),
         note=bemerkung,
         link=link,
+        links=_links(spiel, liga_link=link, gespielt=bool(ergebnis)),
     )
 
 

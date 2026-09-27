@@ -11,7 +11,22 @@
       "team_name": "VfL Waiblingen 2",
       "slug": "vfl-waiblingen-herren2",
       "team_id": 1465016
+    },
+    {
+      "label": "VfL Waiblingen Herren 3",
+      "source": "h4a",
+      "org_id": 216,
+      "class_ids": [
+        167296
+      ],
+      "team_name": "VfL Waiblingen 3",
+      "slug": "vfl-waiblingen-herren3"
     }
   ],
-  "feeds": []
+  "feeds": [
+    {
+      "label": "Herren 2 und 3",
+      "slug": "vfl-waiblingen-herren2-3"
+    }
+  ]
 }

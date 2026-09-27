@@ -216,6 +216,7 @@ class Match:
     dedupe_key: tuple = ()          # (Datum, Heim-ID, Gast-ID) – gegen Doppeleinträge
     note: str = ""                  # Bemerkung der Quelle, z.B. „1. Runde“, „alt 8082“
     link: str = ""                  # Quelle des Spiels; leer = handball.net-Spielseite
+    links: list[str] = field(default_factory=list)   # „Label: URL“, z.B. Liveticker
 
     @property
     def uid(self) -> str:
@@ -270,5 +271,11 @@ class Match:
         zeilen.append(" · ".join(detail))
         if self.referees:
             zeilen.append("Schiedsrichter: " + ", ".join(self.referees))
-        zeilen.append(self.url)
+        # Liveticker und Spielbericht stehen vor dem Link auf die Staffel: in der
+        # Terminvorschau der Kalender-Apps sind die ersten Zeilen sichtbar.
+        zeilen.extend(self.links)
+        # Die Adresse aus URL steht bei h4a schon in einer der Zeilen darüber (der
+        # Ticker führt vor dem Spiel auf dieselbe Staffelseite) – nicht doppeln.
+        if not any(self.url in zeile for zeile in self.links):
+            zeilen.append(self.url)
         return "\n".join(zeilen)
