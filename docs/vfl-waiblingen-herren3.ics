@@ -25,13 +25,13 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – SV Fellbach 2 · 32:35
 DTSTART;TZID=Europe/Berlin:20260919T133000
 DTEND;TZID=Europe/Berlin:20260919T153000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678611@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel · Ergeb
  nis 32:35\nTabelle & Ergebnisse: https://www.handball4all.de/home/portal/b
  aden-wuerttembergischer-hv#/league?ogId=216&lId=167296\nSpielbericht (PDF)
  : https://spo.handball4all.de/misc/sboPublicReports.php?sGID=3499561
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -42,13 +42,13 @@ BEGIN:VEVENT
 SUMMARY:A · Hbi Weil/Feuer 2 – VfL Waiblingen Herren 3 · 37:30
 DTSTART;TZID=Europe/Berlin:20260926T200000
 DTEND;TZID=Europe/Berlin:20260926T220000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678656@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel · 
  Ergebnis 37:30\nTabelle & Ergebnisse: https://www.handball4all.de/home/por
  tal/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296\nSpielbericht 
  (PDF): https://spo.handball4all.de/misc/sboPublicReports.php?sGID=3508516
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Hugo-Kunzi-Sporthalle\, Am Sportpark 4\, 70469 Stuttgart-Feuerbac
  h
 STATUS:CONFIRMED
@@ -60,13 +60,13 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – HSV Stam/Zuff · 28:29
 DTSTART;TZID=Europe/Berlin:20261003T141500
 DTEND;TZID=Europe/Berlin:20261003T161500
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678661@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel · Ergeb
  nis 28:29\nTabelle & Ergebnisse: https://www.handball4all.de/home/portal/b
  aden-wuerttembergischer-hv#/league?ogId=216&lId=167296\nSpielbericht (PDF)
  : https://spo.handball4all.de/misc/sboPublicReports.php?sGID=3513961
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -77,13 +77,13 @@ BEGIN:VEVENT
 SUMMARY:A · TV Bittenfeld 4 – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20261011T170000
 DTEND;TZID=Europe/Berlin:20261011T190000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678691@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nSc
  hiedsrichter: Hartmann\nTabelle & Liveticker (zur Anwurfzeit): https://www
  .handball4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=216&
  lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Gemeindehalle\, Waldstraße 2\, 71336 Waiblingen-Bittenfeld
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -94,12 +94,13 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – TSV Schmiden 4
 DTSTART;TZID=Europe/Berlin:20261017T180000
 DTEND;TZID=Europe/Berlin:20261017T200000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678711@handball4all.de
-DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nTabelle
-  & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/ba
- den-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nSchieds
+ richter: Alcelik\nTabelle & Liveticker (zur Anwurfzeit): https://www.handb
+ all4all.de/home/portal/baden-wuerttembergischer-hv#/league?ogId=216&lId=16
+ 7296
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Neue Staufer-Sporthalle\, Mayenner Straße 30\, 71332 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -110,12 +111,12 @@ BEGIN:VEVENT
 SUMMARY:A · HSG Ca-Mü-Max – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20261107T193000
 DTEND;TZID=Europe/Berlin:20261107T213000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678751@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nTa
  belle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/port
  al/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Sporthalle Schulzentrum\, Seeadlerstraße 3 A\, 70378 Stuttgart-N
  eugereut
 STATUS:CONFIRMED
@@ -127,12 +128,12 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – SV Leonb/Elt 2
 DTSTART;TZID=Europe/Berlin:20261115T160000
 DTEND;TZID=Europe/Berlin:20261115T180000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678761@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nTabelle
   & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/ba
  den-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Neue Staufer-Sporthalle\, Mayenner Straße 30\, 71332 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -143,12 +144,12 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – HT Heckengäu 2
 DTSTART;TZID=Europe/Berlin:20261129T140000
 DTEND;TZID=Europe/Berlin:20261129T160000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678811@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nTabelle
   & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/ba
  den-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Neue Staufer-Sporthalle\, Mayenner Straße 30\, 71332 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -159,12 +160,12 @@ BEGIN:VEVENT
 SUMMARY:A · MTV Stuttgart 2 – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20261205T160000
 DTEND;TZID=Europe/Berlin:20261205T180000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678791@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nTa
  belle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/port
  al/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Sporthalle West (Hasenberg-Schule)\, Bebelstraße 28\, 70193 Stut
  tgart-West
 STATUS:CONFIRMED
@@ -176,12 +177,12 @@ BEGIN:VEVENT
 SUMMARY:A · SV Fellbach 2 – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20261212T160000
 DTEND;TZID=Europe/Berlin:20261212T180000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678836@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nTa
  belle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/port
  al/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Zeppelinhalle\, Thomas-Mann-Straße 53\, 70734 Fellbach
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -192,12 +193,12 @@ BEGIN:VEVENT
 SUMMARY:A · SV Leonb/Elt 2 – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20270109T140000
 DTEND;TZID=Europe/Berlin:20270109T160000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678866@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nTa
  belle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/port
  al/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Sporthalle beim Sportzentrum\, Steinstraße 18\, 71229 Leonberg
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -208,12 +209,12 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – Hbi Weil/Feuer 2
 DTSTART;TZID=Europe/Berlin:20270220T161500
 DTEND;TZID=Europe/Berlin:20270220T181500
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678891@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nTabelle
   & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/ba
  den-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -224,12 +225,12 @@ BEGIN:VEVENT
 SUMMARY:A · HSV Stam/Zuff – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20270227T180000
 DTEND;TZID=Europe/Berlin:20270227T200000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678916@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nTa
  belle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/port
  al/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Sporthalle Talwiesen\, Haldenrainstraße 35\, 70437 Stuttgart-Zuf
  fenhausen
 STATUS:CONFIRMED
@@ -241,12 +242,12 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – TV Bittenfeld 4
 DTSTART;TZID=Europe/Berlin:20270306T163000
 DTEND;TZID=Europe/Berlin:20270306T183000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678936@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nTabelle
   & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/ba
  den-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -257,12 +258,12 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – HSG Ca-Mü-Max
 DTSTART;TZID=Europe/Berlin:20270321T150000
 DTEND;TZID=Europe/Berlin:20270321T170000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678986@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nTabelle
   & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/ba
  den-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -273,12 +274,12 @@ BEGIN:VEVENT
 SUMMARY:A · TSV Schmiden 4 – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20270324T183000
 DTEND;TZID=Europe/Berlin:20270324T203000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9678971@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nTa
  belle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/port
  al/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Sporthalle beim Schulzentrum\, Remstaler Straße 38\, 70736 Fellb
  ach-Schmiden
 STATUS:CONFIRMED
@@ -290,12 +291,12 @@ BEGIN:VEVENT
 SUMMARY:A · HT Heckengäu 2 – VfL Waiblingen Herren 3
 DTSTART;TZID=Europe/Berlin:20270410T200000
 DTEND;TZID=Europe/Berlin:20270410T220000
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9679011@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nAuswärtsspiel\nTa
  belle & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/port
  al/baden-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Sporthalle\, Alte Stuttgarter Straße 70\, 71106 Magstadt
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
@@ -306,12 +307,12 @@ BEGIN:VEVENT
 SUMMARY:H · VfL Waiblingen Herren 3 – MTV Stuttgart 2
 DTSTART;TZID=Europe/Berlin:20270424T161500
 DTEND;TZID=Europe/Berlin:20270424T181500
-DTSTAMP:20261006T222519Z
+DTSTAMP:20261009T222152Z
 UID:game-9679036@handball4all.de
 DESCRIPTION:Männer Bezirksliga Staffel 1 (M-BL-1-SRM)\nHeimspiel\nTabelle
   & Liveticker (zur Anwurfzeit): https://www.handball4all.de/home/portal/ba
  den-wuerttembergischer-hv#/league?ogId=216&lId=167296
-LAST-MODIFIED:20261006T222519Z
+LAST-MODIFIED:20261009T222152Z
 LOCATION:Rundsporthalle\, Beinsteiner Straße 160\, 71334 Waiblingen
 STATUS:CONFIRMED
 URL:https://www.handball4all.de/home/portal/baden-wuerttembergischer-hv#/l
